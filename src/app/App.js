@@ -6,17 +6,23 @@ import Subreddits from '../components/Subreddits'
 
 const App = () => {
   return (
-    <div>
-      <main>
-        <header>
-          <h1>Reddit Minimal</h1>
-          <SearchBar/>
-        </header>
-        <Post />
-        <Subreddits/>
-      </main>
-    </div>
-  )
+		<main>
+			<header>
+				<h1>
+					<span>Reddit</span> Minimal
+				</h1>
+				<SearchBar />
+			</header>
+			<div className='post-container'>
+				<Post />
+				<Post />
+				<Post />
+				<Post />
+			</div>
+
+			<Subreddits />
+		</main>
+	);
 }
 
 export default App

@@ -2,7 +2,7 @@ import React from "react"
 
 const Subreddits = () => {
   return (
-		<div>
+		<div className="subreddits-container">
 			<ul>
 				<li>Home</li>
 				<li>AskReddit</li>
