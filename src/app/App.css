@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Roboto+Condensed:wght@300;400;700&display=swap');
 html{
     box-sizing: border-box;
     font-size: 100%
@@ -18,7 +19,7 @@ html{
 }
 main {
   display: grid;
-  grid-template: 1fr 90%/2fr 1fr;
+  grid-template: 6em 90%/3fr 1fr;
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -37,6 +38,31 @@ header{
 header span{
   color: var(--primary-color);
 }
+header h1{
+  font-size: 1.5em;
+}
+h1 > :first-child{
+  position: relative;
+  top: 4px;
+  color: var(--primary-color);
+}
+
+/*SEARCH BAR*/
+.search-bar{
+  display: flex;
+  align-items: center;
+}
+.search-bar input{
+  width: 350px;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+}
+.search-bar >:nth-child(2){
+  font-size: 2em;
+  padding-left: 10px;
+}
 
 /*POST*/
 .post{
@@ -45,12 +71,21 @@ header span{
   background-color: white;
   grid-template: 1fr/1fr 20fr;
   padding: 15px;
-  margin: 0 5em 1em 1em;
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  margin: 0 2em 2em 2em;
+  box-shadow: 0 10px 15px 3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
   border-radius: 10px;
+  transition: box-shadow .1s ease-in;
+}
+.post img{
+  width: 100%;
+  height: auto;
+}
+.post h3{
+  font-size: 1.5em;
+  padding-bottom: 20px;
 }
 .post:hover{
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
+  box-shadow: 0 20px 25px 5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
 }
 .post button{
   background: none;
@@ -63,13 +98,16 @@ header span{
 	outline: inherit; 
 }
 .post button > *{
-  font-size: 1.3em;
+  font-size: 1em;
+}
+.votes{
+  font-weight: bold;
 }
 .upvote > *{
-  font-size: 1.6em!important;
+  font-size: 1.7em!important;
 }
 .downvote > *{
-  font-size: 1.6em!important;
+  font-size: 1.7em!important;
 }
 .upvote:hover > *{
   color:green;
@@ -87,24 +125,28 @@ header span{
   flex-direction: column;
   align-items: center;
   padding-right: 25px;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 .post-content{
   grid-area: 1/2/2/3;
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid #dfdfdf;
+  padding-bottom: 20px;
+}
+.post img{
+  border-radius: 10px;
 }
 .post-footer{
   grid-area: 2/2/3/3;
   display: flex;
-  border-top: 1px solid #dfdfdf;
   padding: 10px 0 0 20px;
   justify-content: space-between;
   align-items: center;
 }
 .comments-button{
   position: relative;
-  top: 5px;
+  top: 3px;
   padding: 0 5px;
 }
 .post-footer button{
@@ -117,9 +159,71 @@ header span{
 .post .user{
   color: var(--primary-color);
 }
+.comments-section{
+  grid-area: 3/2/4/3;
+  display: none;
+}
+
+/*POST COMMENTS*/
+.comments-container{
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  background: whitesmoke;
+  transition: box-shadow .1s ease-in;
+}
+.comments-container:hover{
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+}
+.comments-header{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
 
 /*SUBREDDITS*/
 .subreddits-container{
   grid-area: 2/2/3/3;
-  background-color: white;
+  box-shadow: 0 10px 15px 3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  padding: 20px;
+}
+.subreddits-container h2{
+  font-size: 2em;
+}
+.subreddits{
+  list-style-type: none;
+}
+.subreddits button{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+  margin: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit; 
+  padding: 20px;
+}
+.subreddits button:hover{
+  background: #dfdfdf;
+  border-radius: 5px;
+}
+.subreddits img{
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  border: 3px solid rgba(0,0,0,0.7);
+}
+.subreddit-title{
+  position: relative;
+  bottom: 2px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  padding-left: 20px;
+  color: rgba(0,0,0,0.7);
 }

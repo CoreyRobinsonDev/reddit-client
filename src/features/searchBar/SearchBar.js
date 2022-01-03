@@ -3,8 +3,8 @@ import { BsSearch } from "react-icons/bs";
 
 const SearchBar = () => {
   return (
-		<div>
-			<input></input>
+		<div className='search-bar'>
+			<input type='text' placeholder='Search' name=''></input>
 			<BsSearch/>
 		</div>
 	);

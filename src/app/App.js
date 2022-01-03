@@ -3,12 +3,14 @@ import React from 'react'
 import SearchBar from '../features/searchBar/SearchBar'
 import Post from '../components/Post'
 import Subreddits from '../components/Subreddits'
+import {BsReddit} from 'react-icons/bs'
 
 const App = () => {
   return (
 		<main>
 			<header>
 				<h1>
+					<BsReddit />
 					<span>Reddit</span> Minimal
 				</h1>
 				<SearchBar />
@@ -19,7 +21,6 @@ const App = () => {
 				<Post />
 				<Post />
 			</div>
-
 			<Subreddits />
 		</main>
 	);
