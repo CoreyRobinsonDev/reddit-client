@@ -5,6 +5,9 @@ import {Comments} from './Comments'
 
 const Post = () => {
 
+	
+
+	
 	const loadComments = () => {
 		document.querySelector('.comments-section').style.display = 'block'
 	}
