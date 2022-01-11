@@ -1,18 +1,31 @@
+import { configureStore } from '@reduxjs/toolkit'
+import { homeReducer} from '../data/home/homeSlice'
 /* 
-store = [
-  {
-  id: 123,
-  title: 'Walk in a Park',
-  content: walk.jpg,
-  votes: 3280,
-  username: 'DogLover223',
-  postAgeInHours: 2,
-  numberOfComments: 213,
-  comments: 
-    [
-      {id: 418, username: 'bob223', content: 'nice', commentAgeInHours: 3},
-      {id: 419, username: 'bob223', content: 'nice', commentAgeInHours: 2},
-    ],
-  },
-]
+store = {
+  home: [
+    {
+      id:
+      title:
+      image:
+      username:
+      votes:
+      postAgeInHours:
+      numberOfComments:
+    },
+  ],
+  askReddit: [],
+  funny: [],
+  antiwork: [],
+  facepalm: []
+}
 */
+export const store = configureStore({
+  reducer: {
+    home: homeReducer,
+    askReddit: null,
+    funny: null,
+    antiwork: null,
+    facepalm: null
+  }
+})
+console.log('yo')

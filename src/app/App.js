@@ -1,9 +1,9 @@
 import './App.css'
 import React from 'react'
-import SearchBar from '../features/searchBar/SearchBar'
+import SearchBar from '../components/SearchBar'
 import Post from '../components/Post'
 import Subreddits from '../components/Subreddits'
-import {BsReddit} from 'react-icons/bs'
+import { BsReddit } from 'react-icons/bs'
 
 const App = () => {
   return (

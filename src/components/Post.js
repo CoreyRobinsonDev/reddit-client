@@ -1,13 +1,13 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 import { TiArrowUpOutline, TiArrowDownOutline } from 'react-icons/ti'
 import { FaRegCommentAlt } from 'react-icons/fa'
-import {Comments} from './Comments'
+import { Comments } from './Comments'
+import { selectHome } from '../data/home/homeSlice'
 
 const Post = () => {
+	const home = useSelector(selectHome)
 
-	
-
-	
 	const loadComments = () => {
 		document.querySelector('.comments-section').style.display = 'block'
 	}
@@ -30,26 +30,23 @@ const Post = () => {
 				<button className='upvote' onClick={upvote}>
 					<TiArrowUpOutline />
 				</button>
-				<span className='votes'>223</span>
+				<span className='votes'>{home[0].votes}</span>
 				<button className='downvote' onClick={downvote}>
 					<TiArrowDownOutline />
 				</button>
 			</div>
 			<div className='post-content'>
-				<h3>Walk in the Park</h3>
-				<img
-					src='https://images.fineartamerica.com/images-medium-large-5/magic-tome-skye-verheijen.jpg'
-					alt=''
-				></img>
+				<h3>{home[0].title}</h3>
+				<img src={home[0].image} alt=''></img>
 			</div>
 			<div className='post-footer'>
-				<span className='user'>DogLover089</span>
-				<span>3 hours ago</span>
+				<span className='user'>{home[0].username}</span>
+				<span>{home[0].postAgeInHours} hours ago</span>
 				<button onClick={loadComments}>
 					<span className='comments-button'>
 						<FaRegCommentAlt />
 					</span>
-					27
+					{home[0].numberOfComments}
 				</button>
 			</div>
 			<div className='comments-section'>
