@@ -3,25 +3,57 @@ import {useSelector} from 'react-redux'
 import { TiArrowUpOutline, TiArrowDownOutline } from 'react-icons/ti'
 import { FaRegCommentAlt } from 'react-icons/fa'
 import { Comments } from './Comments'
-import { selectHome } from '../data/home/homeSlice'
+import { selectHome } from '../data/homeSlice'
+import { selectSubreddit } from '../data/currentSubredditSlice'
+import { selectAskReddit } from '../data/askRedditSlice'
+import { selectFunny } from '../data/funnySlice'
+import { selectAntiwork } from '../data/antiworkSlice'
+import { selectFacepalm } from '../data/facepalmSlice'
 
-const Post = () => {
+const Post = ({ iterator }) => {
 	const home = useSelector(selectHome)
+	const askReddit = useSelector(selectAskReddit)
+	const funny = useSelector(selectFunny)
+	const antiwork = useSelector(selectAntiwork)
+	const facepalm = useSelector(selectFacepalm)
+	const currentSubreddit = useSelector(selectSubreddit)
+
+	let subreddit 
+	switch (currentSubreddit) {
+		case 'Home':
+			subreddit = home
+			break
+		case 'AskReddit':
+			subreddit = askReddit
+			break
+		case 'funny':
+			subreddit = funny
+			break
+		case 'antiwork':
+			subreddit = antiwork
+			break
+		case 'facepalm':
+			subreddit = facepalm
+			break
+		default:
+			subreddit = home
+	}
 
 	const loadComments = () => {
 		document.querySelector('.comments-section').style.display = 'block'
 	}
 	
-	const upvote = () => {
-		document.querySelector('.upvote').style.color = 'green'
-		document.querySelector(".downvote").style.color = "#323140"
-		document.querySelector(".votes").style.color = "green"
+	const upvote = (e) => {
+		e.target.style.color = 'green'
+		e.target.parentNode.nextSibling.style.color = 'green'
+		e.target.parentNode.nextSibling.nextSibling.firstChild.style.color =
+			"#323140";
 	}
 
-	const downvote = () => {
-		document.querySelector(".upvote").style.color = "#323140"
-		document.querySelector(".downvote").style.color = "red"
-		document.querySelector(".votes").style.color = "red"
+	const downvote = (e) => {
+		e.target.style.color = "red"
+		e.target.parentNode.previousSibling.style.color = "red"
+		e.target.parentNode.previousSibling.previousSibling.firstChild.style.color = "#323140";
 	}
 	
   return (
@@ -30,23 +62,23 @@ const Post = () => {
 				<button className='upvote' onClick={upvote}>
 					<TiArrowUpOutline />
 				</button>
-				<span className='votes'>{home[0].votes}</span>
+				<span className='votes'>{subreddit[iterator].votes}</span>
 				<button className='downvote' onClick={downvote}>
 					<TiArrowDownOutline />
 				</button>
 			</div>
 			<div className='post-content'>
-				<h3>{home[0].title}</h3>
-				<img src={home[0].image} alt=''></img>
+				<h3>{subreddit[iterator].title}</h3>
+				<img src={subreddit[iterator].image} alt=''/>
 			</div>
 			<div className='post-footer'>
-				<span className='user'>{home[0].username}</span>
-				<span>{home[0].postAgeInHours} hours ago</span>
+				<span className='user'>{subreddit[iterator].username}</span>
+				<span>{subreddit[iterator].postAgeInHours} hours ago</span>
 				<button onClick={loadComments}>
 					<span className='comments-button'>
 						<FaRegCommentAlt />
 					</span>
-					{home[0].numberOfComments}
+					{subreddit[iterator].numberOfComments}
 				</button>
 			</div>
 			<div className='comments-section'>

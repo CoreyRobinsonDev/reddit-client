@@ -1,12 +1,18 @@
 import React from "react"
+import { changeSubreddit } from "../data/currentSubredditSlice"
+import { useDispatch } from "react-redux"
 
 const Subreddits = () => {
-  return (
+	const dispatch = useDispatch()
+	const handleClick = (e) => {
+		dispatch(changeSubreddit(e.target.innerText))
+	}
+	return (
 		<div className='subreddits-container'>
 			<h2>Subreddits</h2>
 			<ul className='subreddits'>
 				<li>
-					<button>
+					<button onClick={handleClick}>
 						<img
 							src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARIAAAC4CAMAAAAYGZMtAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlT3+AEVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8A8WoAAHxScUAAAAAAElFTkSuQmCC'
 							alt=''
@@ -15,7 +21,7 @@ const Subreddits = () => {
 					</button>
 				</li>
 				<li>
-					<button>
+					<button onClick={handleClick}>
 						<img
 							src='https://b.thumbs.redditmedia.com/EndDxMGB-FTZ2MGtjepQ06cQEkZw_YQAsOUudpb9nSQ.png'
 							alt=''
@@ -24,7 +30,7 @@ const Subreddits = () => {
 					</button>
 				</li>
 				<li>
-					<button>
+					<button onClick={handleClick}>
 						<img
 							src='https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png'
 							alt=''
@@ -33,7 +39,7 @@ const Subreddits = () => {
 					</button>
 				</li>
 				<li>
-					<button>
+					<button onClick={handleClick}>
 						<img
 							src='https://b.thumbs.redditmedia.com/l_LTzMogi2fCDc6oEyijcHr0jVjABp5sjQDDL4QCnNo.png'
 							alt=''
@@ -42,7 +48,7 @@ const Subreddits = () => {
 					</button>
 				</li>
 				<li>
-					<button>
+					<button onClick={handleClick}>
 						<img
 							src='https://b.thumbs.redditmedia.com/ZtyFTkHcUhfrWh6_lKa9FYYv9dCdl6p4kwv-X43voME.png'
 							alt=''

@@ -6,6 +6,10 @@ import Subreddits from '../components/Subreddits'
 import { BsReddit } from 'react-icons/bs'
 
 const App = () => {
+	let listOfPosts = []
+	for (let i = 0; i < 25; i++){
+		listOfPosts.push(<Post iterator={i}/>)
+	}
   return (
 		<main>
 			<header>
@@ -16,10 +20,7 @@ const App = () => {
 				<SearchBar />
 			</header>
 			<div className='post-container'>
-				<Post />
-				<Post />
-				<Post />
-				<Post />
+				{listOfPosts.map((post, i) => <li key={'post_' + i}>{post}</li>)}
 			</div>
 			<Subreddits />
 		</main>

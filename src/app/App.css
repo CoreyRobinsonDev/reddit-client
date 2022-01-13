@@ -81,6 +81,9 @@ h1 > :first-child{
   border-radius: 10px;
   transition: box-shadow .1s ease-in;
 }
+.post-container li {
+  list-style-type: none;
+}
 .post img{
   width: 100%;
   height: auto;
@@ -212,6 +215,7 @@ h1 > :first-child{
 	cursor: pointer;
 	outline: inherit; 
   padding: 20px;
+  border-radius: 5px;
 }
 .subreddits button:hover{
   background: #dfdfdf;
