@@ -2,7 +2,7 @@ import React from 'react'
 import { BsSearch } from "react-icons/bs"
 import {GiHamburgerMenu} from 'react-icons/gi'
 
-const SearchBar = () => {
+export const SearchBar = () => {
 	let subredditsVisible = false
 	const handleClick = () => {
 		if (subredditsVisible) {
@@ -23,4 +23,4 @@ const SearchBar = () => {
 		</div>
 	);
 }
-export default SearchBar
+

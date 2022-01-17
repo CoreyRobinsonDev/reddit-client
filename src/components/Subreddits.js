@@ -1,11 +1,7 @@
 import React from "react"
-import { changeSubreddit } from "../data/currentSubredditSlice"
-import { useDispatch } from "react-redux"
 
-const Subreddits = () => {
-	const dispatch = useDispatch()
+export const Subreddits = () => {
 	const handleClick = (e) => {
-		dispatch(changeSubreddit(e.target.innerText))
 	}
 	return (
 		<div className='subreddits-container'>
@@ -60,5 +56,3 @@ const Subreddits = () => {
 		</div>
 	);
 }
-
-export default Subreddits
