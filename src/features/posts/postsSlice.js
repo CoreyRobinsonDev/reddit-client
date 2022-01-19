@@ -1,11 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import $ from 'jquery'
 
-
-
-export const loadPosts = createAsyncThunk('posts/loadPosts', async ({ name, i }, thunkAPI) => {
-  let post = {}
-  const dateConverter = (time) => {
+const dateConverter = (time) => {
       const unixTimestamp = time;
       const postDate = new Date(unixTimestamp * 1000);
       const postHour = postDate.getHours();
@@ -15,27 +11,31 @@ export const loadPosts = createAsyncThunk('posts/loadPosts', async ({ name, i },
           : new Date().getHours();
 
       return currentHour - postHour
-    }
-  switch (name) {
-		case 'Home':
-      $.getJSON('https://www.reddit.com/r/Home.json', (data) => {
-        let comments = []
+  }
+/*
+   let comments = []
         $.getJSON(`https://www.reddit.com/r/Home/comments/${data.data.children[i].data.id}.json`, (info) => {
           let commentsList = []
           for (let j = 0; j < 3; j++){
             try {
+              console.log(info[1].data.children[0].data.replies.data.children[j].data.author)
               commentsList.push({
-                user: data[1].data.children[0].data.replies.data.children[j].data.author,
-                body: data[1].data.children[0].data.replies.data.children[j].data.body,
-                commentAgeInHours: dateConverter(data[1].data.children[0].data.replies.data.children[j].data.created_utc)
+                user: info[1].data.children[0].data.replies.data.children[j].data.author,
+                body: info[1].data.children[0].data.replies.data.children[j].data.body,
+                commentAgeInHours: dateConverter(info[1].data.children[0].data.replies.data.children[j].data.created_utc)
               })
             } catch (err) {
-              
+              commentsList.push({
+                user: '',
+                body: '',
+                commentAgeInHours: 'Invalid'
+              })
             }
           }
+          console.log(commentsList)
           comments =  commentsList
         })
-        post = {
+        return {
           id: data.data.children[i].data.id,
           subreddit: data.data.children[i].data.subreddit,
           title: data.data.children[i].data.title,
@@ -46,25 +46,25 @@ export const loadPosts = createAsyncThunk('posts/loadPosts', async ({ name, i },
           numberOfComments: data.data.children[i].data.num_comments,
           comments: comments
         }
-      })
-      break
-		case 'AskReddit':
-			
-			break
-		case 'funny':
-			
-			break
-		case 'antiwork':
-			
-			break
-		case 'facepalm':
-			
-			break
-		default:
-			return post
+    })
+*/
+export const loadPost = createAsyncThunk('posts/loadPost', async (arg, thunkAPI) => {
+  switch (arg) {
+    case 'Home':
+      return await $.getJSON('https://www.reddit.com/r/Home.json')
+    case 'AskReddit':
+      return await $.getJSON('https://www.reddit.com/r/AskReddit.json')
+    case 'funny':
+      return await $.getJSON('https://www.reddit.com/r/funny.json')
+    case 'antiwork':
+      return await $.getJSON('https://www.reddit.com/r/antiwork.json')
+    case 'facepalm':
+      return await $.getJSON('https://www.reddit.com/r/facepalm.json')
+    default:
+      return await $.getJSON('https://www.reddit.com/r/Home.json')
   }
-  return post
-}) 
+  
+})
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -72,32 +72,33 @@ const postsSlice = createSlice({
     list: [],
     status: null
   }, 
-  reducers: {
-    loadPosts: (state, { payload }) => {
-      state.list.push({
-        id: payload.id,
-        subreddit: payload.subreddit,
-        title: payload.title,
-        image: payload.image,
-        user: payload.user,
-        votes: payload.votes,
-        postAgeInHours: payload.postAgeInHours,
-        numberOfComments: payload.numberOfComments,
-        comments: payload.comments
-      })
-    }
-  },
   extraReducers: {
-    [loadPosts.pending]: (state, action) => {
+    [loadPost.pending]: (state, action) => {
       state.status = 'pending'
     },
-    [loadPosts.fulfilled]: (state, { payload }) => {
+    [loadPost.fulfilled]: (state, { payload }) => {
       state.status = 'fulfilled'
+
+      for (let i = 0; i < 5; i++){
+        state.list.push({
+          id: payload.data.children[i].data.id,
+          subreddit: payload.data.children[i].data.subreddit,
+          title: payload.data.children[i].data.title,
+          image: payload.data.children[i].data.url,
+          user: payload.data.children[i].data.author,
+          votes: payload.data.children[i].data.ups,
+          postAgeInHours: dateConverter(payload.data.children[i].data.created_utc),
+          numberOfComments: payload.data.children[i].data.num_comments
+        })
+      }
+      
+      
     },
-    [loadPosts.rejected]: (state, action) => {
+    [loadPost.rejected]: (state, action) => {
       state.status = 'rejected'
     }
   }
 })
 
+export const selectList = state => state.posts.list
 export const postsReducer = postsSlice.reducer

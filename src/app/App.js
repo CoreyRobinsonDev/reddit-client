@@ -1,16 +1,22 @@
 import './App.css'
-import React from 'react'
+import React, {useEffect} from 'react'
 import {SearchBar} from '../features/search/SearchBar'
 import {Post} from '../components/Post'
 import {Subreddits} from '../components/Subreddits'
 import { BsReddit } from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
+import { loadPost } from '../features/posts/postsSlice' 
 
 export default function App() {
 	let listOfPosts = []
-	for (let i = 0; i < 5; i++){
-		listOfPosts.push(<Post iterator={i} />)
+	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(loadPost())
+	}, [dispatch])
+
+	for (let j = 0; j < 5; j++){
+		listOfPosts.push(<Post i={j} />)	
 	}
-	
   return (
 		<main>
 			<header>

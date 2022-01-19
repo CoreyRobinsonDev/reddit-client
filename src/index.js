@@ -12,4 +12,4 @@ const render = () => {
   document.getElementById('root')
 );
 }
-store.subscribe(render)
+store.subscribe(render())

@@ -2,8 +2,13 @@ import React from 'react'
 import { TiArrowUpOutline, TiArrowDownOutline } from 'react-icons/ti'
 import { FaRegCommentAlt } from 'react-icons/fa'
 import { Comments } from './Comments'
+import { useSelector } from 'react-redux'
+import { selectList } from '../features/posts/postsSlice'
 
-export const Post = ({ iterator }) => {
+export const Post = ({ i }) => {
+
+	let listItem = useSelector(selectList)
+	console.log(listItem)
 	let toggle = false
 	const showComments = (e) => {
 		toggle
