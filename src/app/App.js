@@ -5,16 +5,17 @@ import {Post} from '../components/Post'
 import {Subreddits} from '../components/Subreddits'
 import { BsReddit } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
-import { loadPost } from '../features/posts/postsSlice' 
+import { loadPosts } from '../features/posts/postsSlice' 
 
 export default function App() {
 	let listOfPosts = []
 	const dispatch = useDispatch()
+
 	useEffect(() => {
-		dispatch(loadPost())
+		dispatch(loadPosts('Home'))
 	}, [dispatch])
 
-	for (let j = 0; j < 5; j++){
+	for (let j = 0; j < 25; j++){
 		listOfPosts.push(<Post i={j} />)	
 	}
   return (

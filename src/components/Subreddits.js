@@ -1,7 +1,12 @@
 import React from "react"
+import { useDispatch } from "react-redux"
+import { changeSubreddit, loadPosts } from "../features/posts/postsSlice"
 
 export const Subreddits = () => {
+	const dispatch = useDispatch()
 	const handleClick = (e) => {
+		dispatch(changeSubreddit(e.target.innerText))
+		dispatch(loadPosts(e.target.innerText))
 	}
 	return (
 		<div className='subreddits-container'>
