@@ -6,7 +6,6 @@ export const Subreddits = () => {
 	const dispatch = useDispatch()
 	const handleClick = (e) => {
 		dispatch(changeSubreddit(e.target.innerText))
-		dispatch(loadPosts(e.target.innerText))
 	}
 	return (
 		<div className='subreddits-container'>

@@ -19,11 +19,18 @@ const postsSlice = createSlice({
   initialState: {
     list: [],
     currentSubreddit: 'Home',
+    numOfSearchResults: 25,
     status: null
   }, 
   reducers: {
     changeSubreddit: (state, { payload }) => {
       state.currentSubreddit = payload
+    },
+    addPosts: (state, { payload }) => {
+      state.list = payload
+    },
+    searchResults: (state, { payload }) => {
+      state.numOfSearchResults = payload
     }
   },
   extraReducers: {
@@ -52,7 +59,6 @@ const postsSlice = createSlice({
   }
 })
 
-
-export const {changeSubreddit} = postsSlice.actions
+export const {changeSubreddit, addPosts, searchResults} = postsSlice.actions
 export const selectCurrentSubreddit = state => state.posts.currentSubreddit
 export const postsReducer = postsSlice.reducer
