@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { changeSubreddit, loadPosts } from "../features/posts/postsSlice"
+import { changeSubreddit} from "../features/posts/postsSlice"
 
 export const Subreddits = () => {
 	const dispatch = useDispatch()
