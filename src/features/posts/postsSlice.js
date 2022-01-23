@@ -45,7 +45,7 @@ const postsSlice = createSlice({
           id: payload.data.children[i].data.id,
           subreddit: payload.data.children[i].data.subreddit,
           title: payload.data.children[i].data.title,
-          image: payload.data.children[i].data.url.includes('redd.it') || payload.data.children[i].data.url.includes('reddit.com')? '': payload.data.children[i].data.url,
+          image: payload.data.children[i].data.url.includes('redd.it') || payload.data.children[i].data.url.includes('reddit.com')? null: payload.data.children[i].data.url,
           user: payload.data.children[i].data.author,
           votes: payload.data.children[i].data.ups,
           postAgeInHours: dateConverter(payload.data.children[i].data.created_utc),
