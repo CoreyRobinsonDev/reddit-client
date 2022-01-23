@@ -37,9 +37,9 @@ export default function App() {
 				</h1>
 				<SearchBar />
 			</header>
-			<div className='post-container'>
+			<ul className='post-container'>
 				{listOfPosts.map((post, i) => <li key={'post_' + i}>{post}</li>)}
-			</div>
+			</ul>
 			<Subreddits />
 		</main>
 	);

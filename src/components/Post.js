@@ -44,11 +44,11 @@ export const Post = ({ i }) => {
   return (
 		<div className='post'>
 			<div className='vote-container'>
-				<button className='upvote' onClick={upvote}>
+				<button className='upvote' onClick={upvote} aria-label='upvote'>
 					<TiArrowUpOutline />
 				</button>
 				<span className='votes'>{post[i] && post[i].votes}</span>
-				<button className='downvote' onClick={downvote}>
+				<button className='downvote' onClick={downvote} aria-label='downvote'>
 					<TiArrowDownOutline />
 				</button>
 			</div>
@@ -66,9 +66,9 @@ export const Post = ({ i }) => {
 					{post[i] && post[i].numberOfComments}
 				</button>
 			</div>
-			<div className='comments-section'>
+			<ul className='comments-section'>
 				{listOfComments.map((comment, i) => <li key={'comment_' + i}>{comment}</li>)}
-			</div>
+			</ul>
 		</div>
 	);
 }

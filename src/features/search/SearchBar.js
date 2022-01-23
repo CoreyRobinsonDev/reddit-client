@@ -33,8 +33,8 @@ export const SearchBar = () => {
   return (
 		<div className='search-bar'>
 			<input type='text' placeholder='Search' name='' value={input} onChange={e => setInput(e.target.value)}></input>
-			<button className='search-btn' onClick={handleSubmit}><BsSearch /></button>
-			<button className='hamburger-menu' onClick={handleClick}><GiHamburgerMenu/></button>
+			<button className='search-btn' onClick={handleSubmit} aria-label='search'><BsSearch /></button>
+			<button className='hamburger-menu' onClick={handleClick} aria-label='hamburger menu'><GiHamburgerMenu/></button>
 		</div>
 	);
 }
